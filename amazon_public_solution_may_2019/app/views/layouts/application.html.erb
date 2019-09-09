@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AmazonSolutionPublicSep18</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+       <%= link_to 'Home', root_path %>
+       |
+       <%= link_to 'About Us', about_path %>
+       |
+       <%= link_to 'Contact Us', contact_path %>
+       |
+       <%= link_to 'New Product', new_product_path %>
+       |
+       <%= link_to 'All Products', products_path %>
+       |
+       <% if user_signed_in? %>
+        <span>Hello, <%= current_user.first_name %>!</span>
+        |
+        <%= link_to 'Sign Out', session_path, method: :delete %>
+        <% if current_user.admin? %>
+         |
+         <%= link_to 'Dashboard', admin_dashboard_index_path %>
+       <% end %>
+      <% else %>
+        <%= link_to 'Sign In', new_session_path %>
+        |
+        <%= link_to 'Sign Up', new_user_path %>
+      <% end %>
+     </nav>
+
+     <% flash.each do |type, message| %>
+        <div class="flash-message alert alert-<%= type %>">
+          <%= message %>
+        </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

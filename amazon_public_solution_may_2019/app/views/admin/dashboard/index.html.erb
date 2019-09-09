@@ -1,0 +1,40 @@
+<p><strong>Number of proudcts</strong>: <%= @products.count %></p>
+<p><strong>Number of reviews</strong>: <%= @reviews.count %></p>
+<p><strong>Number of users</strong>: <%= @users.count %></p>
+
+<hr />
+
+<p>Products</p>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= link_to product.title, product %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr />
+
+<p>Users</p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+</table>
